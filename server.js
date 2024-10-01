@@ -31,5 +31,7 @@ app.get('/',(req,res)=>{
 connectDB()
 
 // creating the port and listen in the HTTP Trafic
-const PORT=process.env.PORT||3006
+const PORT=process.env.PORT||3004
 app.listen(PORT,()=>console.log('port is running'))
+
+

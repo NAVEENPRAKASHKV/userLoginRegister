@@ -7,8 +7,8 @@
       <input id="email" type="email" placeholder="Email ID" name="email" />
       <input id="password" type="password" placeholder="Password" name="password" />
       <input id="confirmPassword" type="password" placeholder="Confirm Password" name="confirmPassword" />
-      <button type="submit">Login</button>
-      <h4>{{{message}}}</h4>
+      <button type="submit">Register</button>
+      <input type="hidden" id="message" value="{{{message}}}" />
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
   </div>
@@ -17,10 +17,22 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Include SweetAlert2 -->
 
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
+
+
+  document.addEventListener('DOMContentLoaded', function () {
+
+    // Server-passed message (make sure to pass it in the response)
+    const message = "{{{message}}}";
+
+    if (message) {
+      Swal.fire(message);
+    }
+
+
     const form = document.querySelector('.login-form');
 
-    form.addEventListener('submit', function(e) {
+
+    form.addEventListener('submit', function (e) {
       const email = document.getElementById("email").value;
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
@@ -37,7 +49,7 @@
 
       // If you do not want the form to submit even after success, uncomment the next line
       // e.preventDefault();
-      
+
       return true; // Return true if all validations pass
     });
   });

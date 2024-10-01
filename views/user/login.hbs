@@ -1,13 +1,31 @@
 <link rel="stylesheet" href="/styles/userLogin.css">
 
-<div class="login-page"></div>
+<div class="login-page">
   <div class="form">
     <h1 class="heading">LOGIN</h1>
-    <form class="login-form">
-      <input type="email" placeholder="email id"/>
-      <input  type="password" placeholder="password"/>
-      <button>login</button>
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    <form class="login-form" method="POST" action="/user/login">
+      <input type="email" placeholder="Email ID" name="email" />
+      <input type="password" placeholder="Password" name="password" />
+      <button type="submit">Login</button>
+      
+      <!-- This hidden input is for passing the message back from the server -->
+      <input type="hidden" id="message" value="{{{message}}}" />
+
+      <p class="message">Not registered? <a href="/register">Create an account</a></p>
     </form>
   </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Access the server-passed message
+    const message = document.getElementById('message').value;
+    
+    // If the message exists, show SweetAlert with the message
+    if (message) {
+      Swal.fire(message);
+    }
+  });
+</script>
