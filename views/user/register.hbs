@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="/styles/userLogin.css">
+
+<div class="login-page">
+  <div class="form">
+    <h1 class="heading">REGISTER</h1>
+    <form class="login-form" method="POST" action="/user/register">
+      <input id="email" type="email" placeholder="Email ID" name="email" />
+      <input id="password" type="password" placeholder="Password" name="password" />
+      <input id="confirmPassword" type="password" placeholder="Confirm Password" name="confirmPassword" />
+      <button type="submit">Login</button>
+      <p class="message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Include SweetAlert2 -->
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    const form = document.querySelector('.login-form');
+
+    form.addEventListener('submit', function(e) {
+      const email = document.getElementById("email").value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      if (email === "" || password === "" || confirmPassword === "") {
+        Swal.fire("All fields are required");
+        e.preventDefault(); // Stop the form from submitting
+        return false;
+      } else if (password !== confirmPassword) {
+        Swal.fire("Passwords do not match");
+        e.preventDefault(); // Stop the form from submitting
+        return false;
+      }
+
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Registration successful",
+        showConfirmButton: true,
+        timer: 2500
+      });
+
+      // If you do not want the form to submit even after success, uncomment the next line
+      // e.preventDefault();
+      
+      return true; // Return true if all validations pass
+    });
+  });
+</script>
